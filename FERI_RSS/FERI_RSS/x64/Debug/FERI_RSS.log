@@ -1,0 +1,21 @@
+﻿Build started 2.12.2016 21:46:13.
+     1>Project "D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\FERI_RSS\FERI_RSS.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files\Visual Studio 2013\VC\bin\x86_amd64\CL.exe /c /I"D:\Programiranje\Knjižnice\poco-1.7.6\XML\include" /I"D:\Programiranje\Knjižnice\poco-1.7.6\Net\include" /I"D:\Programiranje\Knjižnice\poco-1.7.6\Foundation\include" /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Datum.cpp Novica.cpp
+         Datum.cpp
+     1>Datum.cpp(12): error C2059: syntax error : ']'
+     1>Datum.cpp(12): error C2143: syntax error : missing ';' before '{'
+     1>Datum.cpp(12): error C2143: syntax error : missing ';' before '}'
+     1>Datum.cpp(13): error C2181: illegal else without matching if
+     1>Datum.cpp(14): error C2059: syntax error : ']'
+     1>Datum.cpp(14): error C2143: syntax error : missing ';' before '{'
+     1>Datum.cpp(14): error C2143: syntax error : missing ';' before '}'
+         Generating Code...
+         Compiling...
+         Novica.cpp
+         Generating Code...
+     1>Done Building Project "D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\FERI_RSS\FERI_RSS.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.54
