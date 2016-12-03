@@ -9,9 +9,9 @@ Datum::Datum() :
 Datum::Datum(int dan, int mesec, int leto)
 {
 	if (JeLetoPrestopno(leto)) 
-		dnevi_v_mesecu[] = {31, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; // 13 jih je zato, da je potem [1] = januar...
+		int dnevi_v_mesecu[] = {31, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
 	else 
-		dnevi_v_mesecu[] = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		int dnevi_v_mesecu[] = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (JeVeljavenDatum(dan, mesec, leto)) {
 		Datum::dan = dan;

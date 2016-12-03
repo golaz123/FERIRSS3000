@@ -11,11 +11,12 @@ private:
 	const int MIN_DAN = 1;
 	const int MIN_MESEC = 1;
 	const int MIN_LETO = 2015;
+	
 
 	int dan;
 	int mesec;
 	int leto;	
-	int dnevi_v_mesecu[13];
+	int dnevi_v_mesecu[13];// 13 jih je zato, da je potem [1] = januar...
 
 
 	bool JeVeljavenDatum(int dan, int mesec, int leto);

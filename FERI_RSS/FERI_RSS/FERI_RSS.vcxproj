@@ -87,7 +87,8 @@
       <AdditionalIncludeDirectories>D:\Programiranje\Knjižnice\poco-1.7.6\XML\include;D:\Programiranje\Knjižnice\poco-1.7.6\Net\include;D:\Programiranje\Knjižnice\poco-1.7.6\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>PocoFundationd.lib;PocoNetd.lib;PocoXMLd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
