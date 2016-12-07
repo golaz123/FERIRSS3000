@@ -1,0 +1,3 @@
+-je smiselno vse include dati v eno .h datoteko, in povsod dodajati le to
+-kak je z izjemami.
+-string je unicode?
