@@ -1,26 +1,13 @@
 #include "Meni.h"
+#include <thread>
 
-const std::string Meni::IME_VERZIJA = "FERI RSS, v0.1";
-const std::string Meni::IME_VERZIJA_TR = "FERI RSS, v0.1 (TR)";
-const int Meni::GUMB_DEBOUNCE = 125;
-const int Meni::ST_KATEGORIJ_NOVIC = 5;
-const std::string Meni::novice_spl_naslovi[ST_KATEGORIJ_NOVIC] = { 
-	"http://feri.um.si/odeska/rss/",
-	"http://feri.um.si/novice/rss/",
-	"http://feri.um.si/obvestila/rss/",
-	"http://feri.um.si/dogodki/rss/",
-	"http://feri.um.si/zaposlitve/rss/"
-};
-const std::string Meni::novice_lok_imena[ST_KATEGORIJ_NOVIC] = {
-	"odeska.dat",
-	"novice.dat",
-	"obvestila.dat"
-};
-const std::string Meni::prenosna_mapa = "\\temp\\";
+const std::string Meni::IME_VERZIJA = "FERI RSS, v0.1";			// Naslov odprtega okna v normalnem režimu.
+const std::string Meni::IME_VERZIJA_TR = "FERI RSS, v0.1 (TR)";	// Naslov odprtega okna v testnem režimu.
+const int Meni::GUMB_DEBOUNCE = 175;								// Kak dolgo poèakat preden znova preverit stanje gumboc (v ms).
 
 void Meni::GlavniMeni()
 {
-	GlavneStoritve tr_storitev = GlavneStoritve::VSE_NOVICE;	// Trenutno oznaèena storitev.
+	GlavneStoritve tr_storitev = GlavneStoritve::VSE_NOVICE;				// Trenutno oznaèena storitev.
 	const std::wstring glavne_storitve[GlavneStoritve::ST_STORITEV] = {	// Storitve izpiane na zaslonu.
 		L"1. vse novice",
 		L"2. oglasna deska",
@@ -47,7 +34,7 @@ void Meni::GlavniMeni()
 		&Meni::Nastavitve,
 		&Meni::Izhod
 	};
-	PrenesiNovice();
+
 	SetConsoleTitle(IME_VERZIJA.c_str());
 	setlocale(LC_ALL, "");
 
@@ -74,7 +61,7 @@ void Meni::GlavniMeni()
 		} else if (GetKeyState(VK_RETURN) & 0x8000) {	// Enter.
 			Sleep(GUMB_DEBOUNCE);	// Potrebno je prej debounce, da se ne po pomoti šteje kot stisk tipke v podmeniju.
 
-			(p_podmeniji[tr_storitev - 1])();
+			(p_podmeniji[tr_storitev - 1])(); //Klic funkcije podmenija(functor)
 
 			system("cls");
 
@@ -114,7 +101,7 @@ void Meni::Oznaci(int x, int y, std::wstring besedilo)
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN);
 
-	std::wcout << besedilo;
+	std::wcout << besedilo;		// Preipiše morebitno že obstojeèo besedilo v vrstici.
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
@@ -124,13 +111,6 @@ void Meni::IzpisiXY(int x, int y, std::wstring besedilo)
 	Meni::PojdiXY(x, y);
 
 	std::wcout << besedilo;
-}
-
-void Meni::PrenesiNovice()
-{
-	for (int i = 0; i < ST_KATEGORIJ_NOVIC; i++) {
-		PovezavaHTTP::PrenesiDatoteko(novice_spl_naslovi[i], prenosna_mapa + novice_lok_imena[i]);
-	}
 }
 
 void Meni::VseNovice()
@@ -259,14 +239,30 @@ void Meni::Zaposlitve()
 	}
 }
 
+void Meni::IskalnaNit(std::wstring kljuc, std::wstring* povratno_sporocilo)
+{
+	//	preveri èe je vnos datuma veljaven
+	if (!JeVeljavenVnosDatuma(kljuc))
+		*povratno_sporocilo = std::wstring(L"Napaèen vnos datuma");
+	else
+		*povratno_sporocilo = std::wstring(L"ASD");
+}
+bool Meni::JeVeljavenVnosDatuma(std::wstring vnos)
+{
+
+	return true;
+}
 void Meni::IskanjePoDatumu()
 {
 	system("cls");
 
-	std::string vnos = "";
+	std::wstring vnos = L"";
 
 	std::wcout << L"Vpiši datum <dan>.<mesec>.<leto>: ";
-	std::cin >> vnos;
+	std::wcin >> vnos;
+	std::wstring* _povratno_sporocilo = new std::wstring();
+	//std::thread t1(IskalnaNit, vnos, _povratno_sporocilo); // ustvarimo novo nit, ki išèe po kljuèu vnos
+	//t1.join();
 
 	while (true) {	
 		// Preveri èe je kateri izmed gumbov stisjen (0x8000-najvišji bit drži to vrednost).
