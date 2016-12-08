@@ -1,0 +1,15 @@
+﻿Build started 3.12.2016 22:01:34.
+     1>Project "D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\FERI_RSS\FERI_RSS.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files\Visual Studio 2013\VC\bin\x86_amd64\CL.exe /c /I"D:\Programiranje\Knjižnice\poco-1.7.6\XML\include" /I"D:\Programiranje\Knjižnice\poco-1.7.6\Net\include" /I"D:\Programiranje\Knjižnice\poco-1.7.6\Foundation\include" /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         D:\Program Files\Visual Studio 2013\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\x64\Debug\FERI_RSS.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\x64\Debug\FERI_RSS.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\x64\Debug\FERI_RSS.lib" /MACHINE:X64 x64\Debug\Datum.obj
+         x64\Debug\main.obj
+         x64\Debug\Novica.obj
+         FERI_RSS.vcxproj -> D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\x64\Debug\FERI_RSS.exe
+     1>Done Building Project "D:\Študij\OneDrive za podjetja\Programiranje\OPI\FERIRSS3000\FERI_RSS\FERI_RSS\FERI_RSS.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.64
