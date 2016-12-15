@@ -1,7 +1,10 @@
 #pragma once
 
 #include <iostream>
+<<<<<<< HEAD
 #include <string>
+=======
+>>>>>>> origin/master
 
 class Datum
 {

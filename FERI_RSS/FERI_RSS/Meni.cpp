@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Ôªø#include "Meni.h"
 
 const std::string Meni::IME_VERZIJA = "FERI RSS, v0.1";
@@ -39,6 +40,18 @@ std::vector<Novica> Meni::zaposlitve;
 void Meni::GlavniMeni()
 {
 	GlavneStoritve tr_storitev = GlavneStoritve::VSE_NOVICE;	// Trenutno oznaƒçena storitev.
+=======
+#include "Meni.h"
+#include <thread>
+
+const std::string Meni::IME_VERZIJA = "FERI RSS, v0.1";			// Naslov odprtega okna v normalnem reûimu.
+const std::string Meni::IME_VERZIJA_TR = "FERI RSS, v0.1 (TR)";	// Naslov odprtega okna v testnem reûimu.
+const int Meni::GUMB_DEBOUNCE = 175;								// Kak dolgo poËakat preden znova preverit stanje gumboc (v ms).
+
+void Meni::GlavniMeni()
+{
+	GlavneStoritve tr_storitev = GlavneStoritve::VSE_NOVICE;				// Trenutno oznaËena storitev.
+>>>>>>> origin/master
 	const std::wstring glavne_storitve[GlavneStoritve::ST_STORITEV] = {	// Storitve izpiane na zaslonu.
 		L"1. vse novice",
 		L"2. oglasna deska",
@@ -99,7 +112,7 @@ void Meni::GlavniMeni()
 		} else if (GetKeyState(VK_RETURN) & 0x8000) {	// Enter.
 			Sleep(GUMB_DEBOUNCE);	// Potrebno je prej debounce, da se ne po pomoti ≈°teje kot stisk tipke v podmeniju.
 
-			(p_podmeniji[tr_storitev - 1])();
+			(p_podmeniji[tr_storitev - 1])(); //Klic funkcije podmenija(functor)
 
 			// Izhod iz programa.
 			if (!ostani_v_prog) { break; }
@@ -188,7 +201,7 @@ void Meni::Oznaci(int x, int y, std::wstring besedilo)
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN);
 
-	std::wcout << besedilo;
+	std::wcout << besedilo;		// Preipiöe morebitno ûe obstojeËo besedilo v vrstici.
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
@@ -200,6 +213,7 @@ void Meni::IzpisiXY(int x, int y, std::wstring besedilo)
 	std::wcout << besedilo;
 }
 
+<<<<<<< HEAD
 void Meni::PrenosInObdelava()
 {
 	while (true) {
@@ -236,6 +250,8 @@ void Meni::PrenosInObdelava()
 	}
 }
 
+=======
+>>>>>>> origin/master
 void Meni::VseNovice()
 {
 	static const int min_st_strani = 1;
@@ -410,14 +426,35 @@ void Meni::Zaposlitve()
 	}
 }
 
+void Meni::IskalnaNit(std::wstring kljuc, std::wstring* povratno_sporocilo)
+{
+	//	preveri Ëe je vnos datuma veljaven
+	if (!JeVeljavenVnosDatuma(kljuc))
+		*povratno_sporocilo = std::wstring(L"NapaËen vnos datuma");
+	else
+		*povratno_sporocilo = std::wstring(L"ASD");
+}
+bool Meni::JeVeljavenVnosDatuma(std::wstring vnos)
+{
+
+	return true;
+}
 void Meni::IskanjePoDatumu()
 {
 	system("cls");
 
 	std::wstring vnos = L"";
 
+<<<<<<< HEAD
 	std::wcout << L"Vpi≈°i datum <dan>.<mesec>.<leto>: ";
 	std::wcin >> vnos;
+=======
+	std::wcout << L"Vpiöi datum <dan>.<mesec>.<leto>: ";
+	std::wcin >> vnos;
+	std::wstring* _povratno_sporocilo = new std::wstring();
+	//std::thread t1(IskalnaNit, vnos, _povratno_sporocilo); // ustvarimo novo nit, ki iöËe po kljuËu vnos
+	//t1.join();
+>>>>>>> origin/master
 
 	while (true) {	
 		// Preveri ƒçe je kateri izmed gumbov stisjen (0x8000-najvi≈°ji bit dr≈æi to vrednost).
