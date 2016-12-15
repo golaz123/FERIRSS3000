@@ -6,6 +6,13 @@ Datum::Datum() :
 {
 }
 
+Datum::Datum(std::wstring datum)
+{
+	Datum::dan = 1;
+	Datum::mesec = 1;
+	Datum::leto = 2016;
+}
+
 Datum::Datum(int dan, int mesec, int leto)
 {
 	if (JeLetoPrestopno(leto)) 
@@ -49,7 +56,7 @@ bool Datum::JeLetoPrestopno(int leto)
 	return false;
 }
 
-std::wostream &operator<<(std::wostream &stream, Datum const &datum) {
+std::wostream& operator<<(std::wostream& stream, const Datum& datum) {
 	stream << datum.dan << "." << datum.mesec << "." << datum.leto;
 	return stream;
 }

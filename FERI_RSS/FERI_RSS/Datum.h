@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <map>
+#include <string>
 
 class Datum
 {
@@ -23,9 +23,10 @@ private:
 	bool JeLetoPrestopno(int leto);
 public:
 	Datum();
+	Datum(std::wstring datum);
 	Datum(int dan, int mesec, int leto);
 	~Datum();
 
-	friend std::wostream &operator<<(std::wostream &stream, const Datum &datum);
+	friend std::wostream& operator<<(std::wostream& stream, const Datum& datum);
 };
 

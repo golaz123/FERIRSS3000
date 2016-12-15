@@ -1,5 +1,6 @@
 #include "PovezavaHTTP.h"
 
+
 PovezavaHTTP::PrenosStanje PovezavaHTTP::PrenesiDatoteko(std::string spletni_naslov, std::string pot_datoteke)
 {
 	PovezavaHTTP::PrenosStanje stanje;
@@ -7,21 +8,21 @@ PovezavaHTTP::PrenosStanje PovezavaHTTP::PrenesiDatoteko(std::string spletni_nas
 
 	datoteka.open(pot_datoteke, std::ios_base::out | std::ios_base::trunc);
 
-	URI uri(spletni_naslov);
+	Poco::URI uri(spletni_naslov);
 
 	std::string path(uri.getPathAndQuery());
 
 	if (path.empty()) { path = "/"; }
 
-	HTTPClientSession session(uri.getHost(), uri.getPort());
-	HTTPRequest request(HTTPRequest::HTTP_GET, path, HTTPMessage::HTTP_1_1);
-	HTTPResponse response;
+	Poco::Net::HTTPClientSession session(uri.getHost(), uri.getPort());
+	Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, path, Poco::Net::HTTPMessage::HTTP_1_1);
+	Poco::Net::HTTPResponse response;
 
 	session.sendRequest(request);
 	std::istream &rs = session.receiveResponse(response);
 
 	if (response.getStatus() == Poco::Net::HTTPResponse::HTTP_OK) {
-		StreamCopier::copyStream(rs, datoteka);
+		Poco::StreamCopier::copyStream(rs, datoteka);
 
 		stanje.uspesno = true;
 	}
@@ -32,6 +33,8 @@ PovezavaHTTP::PrenosStanje PovezavaHTTP::PrenesiDatoteko(std::string spletni_nas
 		stanje.uspesno = false;
 		stanje.napaka = napaka.str();
 	}
+
+	datoteka.close();
 
 	return stanje;
 }

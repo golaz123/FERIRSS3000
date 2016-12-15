@@ -11,12 +11,6 @@
 #include <string>
 #include <sstream>
 
-using Poco::Net::HTTPClientSession;
-using Poco::Net::HTTPRequest;
-using Poco::Net::HTTPResponse;
-using Poco::Net::HTTPMessage;
-using Poco::StreamCopier;
-using Poco::URI;
 
 class PovezavaHTTP
 {

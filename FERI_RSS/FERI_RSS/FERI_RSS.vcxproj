@@ -126,6 +126,7 @@
     <ClInclude Include="Datum.h" />
     <ClInclude Include="Meni.h" />
     <ClInclude Include="Novica.h" />
+    <ClInclude Include="ObdelavaXML.h" />
     <ClInclude Include="PovezavaHTTP.h" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Meni.cpp" />
     <ClCompile Include="Novica.cpp" />
+    <ClCompile Include="ObdelavaXML.cpp" />
     <ClCompile Include="PovezavaHTTP.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

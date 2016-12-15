@@ -27,6 +27,9 @@
     <ClInclude Include="PovezavaHTTP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObdelavaXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Novica.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PovezavaHTTP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObdelavaXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

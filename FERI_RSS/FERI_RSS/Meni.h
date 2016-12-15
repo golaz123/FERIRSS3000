@@ -1,11 +1,19 @@
 #pragma once
 
 #include "PovezavaHTTP.h"
+#include "ObdelavaXML.h"
+#include "Datum.h"
+#include "Novica.h"
 #include <Windows.h>
+#include <stdio.h>
 #include <iostream>
 #include <io.h>
 #include <fcntl.h>
 #include <string>
+#include <thread>
+#include <chrono>
+#include <ctime>
+#include <vector>
 
 class Meni
 {
@@ -36,13 +44,33 @@ private:
 
 	static const std::string IME_VERZIJA;			// Naslov odprtega okna v normalnem režimu.
 	static const std::string IME_VERZIJA_TR;		// Naslov odprtega okna v testnem režimu.
-	static const int GUMB_DEBOUNCE;					// Kak dolgo poèakat preden znova preverit stanje gumboc (v ms).
-	static const int ST_KATEGORIJ_NOVIC;			// Število kategorij novic.
-	static const std::string novice_spl_naslovi[];	// Spletni naslovi kategorij novic.
-	static const std::string novice_lok_imena[];
-	static const std::string prenosna_mapa;
+	static const std::string IME_VERZIJA_NP;		// Naslov odprtega okna, èe ni zaznane internetne povezave.
+	static const int GUMB_DEBOUNCE = 125;			// Kak dolgo poèakat preden znova preverit stanje gumboc (v ms).
+	static const int ST_KATEGORIJ_NOVIC = 5;		// Število kategorij novic.
+	static std::vector<Novica>* const P_SEZNAMI[];	// Kazalci do seznamov novic.
+	static const std::string NOVICE_SPL_NASLOVI[];	// Spletni naslovi kategorij novic.
+	static const std::string NOVICE_LOK_IMENA[];	// Imena prenesenih datotek.
+	static const std::string PRENOSNA_MAPA;			// Mapa kamor se prenešejo datoteke.
+	static const std::string NAPAKA_DUMP;			// Datoteka kamor se izpišejo napake.
+	static const int CAS_MED_PRENOSI = 30000;		// Koliko èasa naj preteèe med posamezni prenosi s spleta.
+	static const int PREPR_NOVICA_Y = 14;			// Y koordinata konzole za preprosti izpis novice.
+	static const int MAX_ST_NOVIC_STRAN = 6;		// Maximalno število podrobno izpisanih novic na eni strani.
+
+	static bool ostani_v_prog;				// Èe naj še ostanem v programu ali ga zaprem.
+	static int st_novic_stran;				// Število podrobno izpisanih novic na eno stran.
+
+	// Seznami predelanih novic, za vsako kategorijo posebej.
+	static std::vector<Novica> dogodki;
+	static std::vector<Novica> odeska;
+	static std::vector<Novica> novice;
+	static std::vector<Novica> obvestila;
+	static std::vector<Novica> zaposlitve;
 
 	Meni() {}
+
+	// Eksplicitino prepovej kopiranje razreda.
+	Meni(const Meni&) = delete;
+	Meni& operator= (const Meni&) = delete;
 
 	static void VseNovice();
 	static void OglasnaDeska();
@@ -62,7 +90,10 @@ private:
 	static void IzpisiXY(int x, int y, std::wstring besedilo);
 	static int PovecajDoMeje(int tr_vrednost, int max_vrednost, int min_vrednost);
 	static int ZmanjsajDoMeje(int tr_vrednost, int max_vrednost, int min_vrednost);
-	static void PrenesiNovice();
+	static void PrenosInObdelava();
+	static void PreprostiIzpisNovic(GlavneStoritve tr_storitev);
+	static void PodrobenIzpisNovic(GlavneStoritve tr_storitev, int tr_stran, int st_strani);
+	static int DobiSteviloVsehNovic();
 public:
 	static void GlavniMeni();
 };
